@@ -1,0 +1,71 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/scoreTextView"
+        android:layout_width="227dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="104dp"
+        android:text="@string/score"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.138" />
+
+    <TextView
+        android:id="@+id/scoreDisplay"
+        android:layout_width="199dp"
+        android:layout_height="64dp"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
+
+        app:layout_constraintStart_toEndOf="@+id/scoreTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105" />
+
+    <Button
+        android:id="@+id/climbButton"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="208dp"
+        android:layout_marginEnd="168dp"
+        android:background="@drawable/round_corner"
+        android:text="@string/climb"
+        app:layout_constraintEnd_toStartOf="@+id/fallButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fallButton"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="209dp"
+        android:layout_marginEnd="184dp"
+        android:background="@drawable/round_corner"
+        android:text="@string/fall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="90dp"
+        android:background="@drawable/round_corner"
+        android:text="@string/reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fallButton"
+        app:layout_constraintStart_toEndOf="@+id/climbButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

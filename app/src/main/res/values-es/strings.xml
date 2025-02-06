@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Puntuación de Escalada</string>
+    <string name="climb">Subir</string>
+    <string name="fall">Caer</string>
+    <string name="reset">Restablecer</string>
+    <string name="score">Puntuación</string>
+    <string name="score_display">0</string>
+</resources>

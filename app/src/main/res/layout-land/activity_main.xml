@@ -23,6 +23,7 @@
         android:id="@+id/scoreDisplay"
         android:layout_width="199dp"
         android:layout_height="64dp"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"

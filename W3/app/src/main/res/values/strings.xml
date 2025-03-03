@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">W3</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="Firstname">FirstName</string>
+    <string name="Lastname">LastName</string>
+    <string name="Ok">Ok</string>
+    <string name="Button">Button</string>
 </resources>

@@ -20,10 +20,10 @@ class DetailActivityUITest {
 
     @Test
     fun displayItemDetailsOnLaunch() {
-        val intent = Intent().putExtra("item", RentalItem("Bike", 10, 4.5f, "New"))
+        val intent = Intent().putExtra("item", RentalItem("Drum", 10, 4.5f, "New"))
         ActivityScenario.launch<DetailActivity>(intent)
 
-        onView(withId(R.id.detail_name)).check(matches(withText("Bike")))
+        onView(withId(R.id.detail_name)).check(matches(withText("Drum")))
     }
 
 }

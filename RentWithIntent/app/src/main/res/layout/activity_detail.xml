@@ -7,18 +7,6 @@
     android:gravity="center"
     android:background="@drawable/background">
 
-    <!-- Credit Display -->
-    <TextView
-        android:id="@+id/credit_balance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Credits: 100"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        android:layout_marginBottom="12dp" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="220dp"

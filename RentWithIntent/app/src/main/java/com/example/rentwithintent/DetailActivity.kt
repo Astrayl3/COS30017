@@ -2,11 +2,7 @@ package com.example.rentwithintent
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class DetailActivity : AppCompatActivity() {
@@ -19,6 +15,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var cancelButton: Button
 
     private lateinit var selectedItem: RentalItem
+    private var credits: Int = 0  // To store received credits
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +33,7 @@ class DetailActivity : AppCompatActivity() {
             finish()
             return
         }
+        credits = intent.getIntExtra("credits", 100)
 
         displayItemDetails()
 
@@ -51,17 +49,26 @@ class DetailActivity : AppCompatActivity() {
 
         confirmButton.setOnClickListener {
             val duration = rentalDuration.progress
-            if (duration > 0) {
-                val currentTime = System.currentTimeMillis()
-                val returnDate = currentTime + duration * 24 * 60 * 60 * 1000L
+            val totalCost = duration * selectedItem.price
 
-                selectedItem.expirationDate = returnDate
-                val resultIntent = Intent().apply {
-                    putExtra("item", selectedItem)
+            if (duration > 0) {
+                if (credits >= totalCost) {
+                    credits -= totalCost
+
+                    val currentTime = System.currentTimeMillis()
+                    val returnDate = currentTime + duration * 24 * 60 * 60 * 1000L
+                    selectedItem.expirationDate = returnDate
+
+                    val resultIntent = Intent().apply {
+                        putExtra("item", selectedItem)
+                        putExtra("credits", credits)
+                    }
+                    setResult(RESULT_OK, resultIntent)
+                    Toast.makeText(this, "Rental successful!", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Not enough credits!", Toast.LENGTH_SHORT).show()
                 }
-                setResult(RESULT_OK, resultIntent)
-                Toast.makeText(this, "Good choice!", Toast.LENGTH_SHORT).show()
-                finish()
             } else {
                 Toast.makeText(this, "Must select at least 1 day!", Toast.LENGTH_SHORT).show()
             }

@@ -5,6 +5,9 @@
     android:padding="16dp"
     android:background="@drawable/background">
 
+    <!-- Credit Display -->
+
+
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="match_parent"
@@ -13,19 +16,33 @@
         android:src="@drawable/drum" />
 
     <TextView
+        android:id="@+id/credit_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Credits: 100"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
         android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Item Name"
-        android:textSize="18sp"
-        android:layout_marginTop="8dp" />
+        android:textSize="32sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/item_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price: 0 credits"
-        android:layout_marginTop="8dp" />
+        android:textSize="30sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"/>
 
     <RatingBar
         android:id="@+id/item_rating"

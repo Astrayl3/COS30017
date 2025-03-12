@@ -2,14 +2,10 @@ package com.example.rentwithintent
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +16,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var itemCondition: TextView
     private lateinit var nextButton: Button
     private lateinit var borrowButton: Button
+    private lateinit var creditBalance: TextView
+
+    private var credits: Int = 100  // Initial balance
 
     private val rentalItems = mutableListOf(
         RentalItem("Drum", 10, 4.5f, "New"),
@@ -40,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         itemCondition = findViewById(R.id.item_condition)
         nextButton = findViewById(R.id.next_button)
         borrowButton = findViewById(R.id.borrow_button)
+        creditBalance = findViewById(R.id.credit_balance)
 
         updateUI()
 
@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         borrowButton.setOnClickListener {
             val intent = Intent(this, DetailActivity::class.java).apply {
                 putExtra("item", rentalItems[currentIndex])
+                putExtra("credits", credits)
             }
             startActivityForResult(intent, REQUEST_CODE)
         }
@@ -59,11 +60,8 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            val updatedItem = data?.getParcelableExtra<RentalItem>("item")
-            updatedItem?.let { item ->
-                rentalItems.find { it.name == item.name }?.expirationDate = item.expirationDate
-                updateUI()
-            }
+            credits = data?.getIntExtra("credits", credits) ?: credits
+            updateUI()
         }
     }
 
@@ -73,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         itemPrice.text = "Price: ${currentItem.price} credits"
         itemRating.rating = currentItem.rating
         itemCondition.text = currentItem.condition
+        creditBalance.text = "Credits: $credits"
 
         itemImage.setImageResource(
             when (currentItem.name) {
@@ -83,16 +82,7 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        currentItem.expirationDate?.let { expiry ->
-            val formattedDate = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(Date(expiry))
-            val currentTime = System.currentTimeMillis()
-
-            borrowButton.isEnabled = currentTime >= expiry
-            borrowButton.text = "Due Back $formattedDate"
-        } ?: run {
-            borrowButton.isEnabled = true
-            borrowButton.text = "Borrow"
-        }
+        borrowButton.isEnabled = credits >= currentItem.price
     }
 
     companion object {
